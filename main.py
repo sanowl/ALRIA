@@ -42,6 +42,8 @@ from scipy.spatial.distance import euclidean, cosine
 import networkx as nx
 from datetime import datetime, timedelta
 import warnings
+import fickling
+
 warnings.filterwarnings('ignore')
 
 # Configure logging
@@ -645,7 +647,7 @@ class EpisodicMemoryBank:
             
             if cache_file.exists():
                 with open(cache_file, "rb") as f:
-                    memory_data = pickle.load(f)
+                    memory_data = fickling.load(f)
                 
                 self.episodes = memory_data.get('episodes', [])
                 self.episode_embeddings = memory_data.get('episode_embeddings', [])
