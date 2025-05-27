@@ -487,7 +487,7 @@ Multi-method uncertainty quantification.
 
 ## 🤝 Contributing
 
-We welcome contributions! Please follow these guidelines:
+welcome contributions! Please follow these guidelines:
 
 1. **Fork the repository** and create a feature branch
 2. **Write tests** for new functionality
