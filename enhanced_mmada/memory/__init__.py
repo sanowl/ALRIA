@@ -1,5 +1,5 @@
 """
-Memory systems for Enhanced MMaDA.
+Memory systems for the multimodal model.
 Contains episodic memory, working memory, and related components.
 """
 

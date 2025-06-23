@@ -1,5 +1,5 @@
 """
-Working Memory Buffer for Enhanced MMaDA.
+Working Memory Buffer for the multimodal model.
 Manages short-term working memory for reasoning processes.
 """
 
@@ -8,7 +8,7 @@ import threading
 from typing import Dict, List, Any, Optional
 from collections import deque
 
-from ..config import EnhancedMMaDAConfig
+from ..config import ModelConfig
 from ..utils.decorators import timing_decorator, error_handler
 
 import logging
@@ -16,9 +16,9 @@ logger = logging.getLogger(__name__)
 
 
 class WorkingMemoryBuffer:
-    """Enhanced working memory buffer with context management."""
+    """Working memory buffer with context management."""
     
-    def __init__(self, config: EnhancedMMaDAConfig):
+    def __init__(self, config: ModelConfig):
         self.config = config
         self.max_size = config.working_memory_size
         self.memory_buffer = deque(maxlen=self.max_size)

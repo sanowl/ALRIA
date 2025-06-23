@@ -1,5 +1,5 @@
 """
-Text embedding utilities for Enhanced MMaDA.
+Text embedding utilities for the multimodal model.
 Provides various methods for generating text embeddings.
 """
 
@@ -11,16 +11,16 @@ from collections import Counter
 from transformers import BertModel, BertTokenizer
 from sklearn.feature_extraction.text import TfidfVectorizer
 
-from ..config import EnhancedMMaDAConfig
+from ..config import ModelConfig
 from .decorators import timing_decorator, error_handler
 
 logger = logging.getLogger(__name__)
 
 
-class AdvancedTextEmbedding:
-    """Advanced text embedding with multiple methods and fallbacks."""
+class TextEmbedding:
+    """Text embedding with multiple methods and fallbacks."""
     
-    def __init__(self, config: EnhancedMMaDAConfig):
+    def __init__(self, config: ModelConfig):
         self.config = config
         self.device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
         

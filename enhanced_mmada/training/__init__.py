@@ -1,10 +1,10 @@
 """
-Training components for Enhanced MMaDA.
+Training components for the multimodal model.
 Contains trainer class and training utilities.
 """
 
-from .trainer import EnhancedMMaDATrainer
+from .trainer import ModelTrainer
 
 __all__ = [
-    'EnhancedMMaDATrainer',
+    'ModelTrainer',
 ] 

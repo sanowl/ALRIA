@@ -1,17 +1,17 @@
 """
-Enhanced MMaDA: Multimodal Attention and Domain Adaptation Framework
-A comprehensive AI system with advanced reasoning, memory, and adaptation capabilities.
+Multimodal Language Model with Memory
+A practical multimodal language model with memory systems and robust training.
 """
 
 __version__ = "1.0.0"
-__author__ = "Enhanced MMaDA Team"
+__author__ = "Multimodal Model Team"
 
-from .config import EnhancedMMaDAConfig
-from .models import EnhancedMMaDAModel
-from .training import EnhancedMMaDATrainer
+from .config import ModelConfig
+from .models import MultimodalModel
+from .training import ModelTrainer
 
 __all__ = [
-    'EnhancedMMaDAConfig',
-    'EnhancedMMaDAModel', 
-    'EnhancedMMaDATrainer',
+    'ModelConfig',
+    'MultimodalModel', 
+    'ModelTrainer',
 ] 

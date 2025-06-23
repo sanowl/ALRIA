@@ -1,13 +1,13 @@
 """
-Enhanced MMaDA Model - Main model class.
-Comprehensive multimodal model with advanced reasoning capabilities.
+Multimodal Model - Main model class.
+Multimodal model with memory systems and robust architecture.
 """
 
 import torch
 import torch.nn as nn
 from typing import Dict, List, Optional, Any, Tuple
 
-from ..config import EnhancedMMaDAConfig
+from ..config import ModelConfig
 from ..memory import EpisodicMemoryBank, WorkingMemoryBuffer
 from ..utils.decorators import timing_decorator, error_handler
 
@@ -15,19 +15,17 @@ import logging
 logger = logging.getLogger(__name__)
 
 
-class EnhancedMMaDAModel(nn.Module):
+class MultimodalModel(nn.Module):
     """
-    Enhanced Multimodal Attention and Domain Adaptation model.
+    Multimodal model with memory systems.
     
-    This is the main model class that orchestrates all components:
+    This is the main model class that includes:
     - Text and vision processing
     - Memory systems
-    - Reasoning modules
-    - Uncertainty estimation
-    - Domain adaptation
+    - Generation capabilities
     """
     
-    def __init__(self, config: EnhancedMMaDAConfig):
+    def __init__(self, config: ModelConfig):
         super().__init__()
         
         self.config = config
@@ -44,7 +42,7 @@ class EnhancedMMaDAModel(nn.Module):
         self.training_step = 0
         self.evaluation_mode = False
         
-        logger.info("Enhanced MMaDA model initialized successfully")
+        logger.info("Multimodal model initialized successfully")
     
     @error_handler(log_error=True)
     def _initialize_model_components(self):
@@ -102,7 +100,7 @@ class EnhancedMMaDAModel(nn.Module):
                labels: Optional[torch.Tensor] = None,
                return_dict: bool = True) -> Dict[str, torch.Tensor]:
         """
-        Forward pass of the Enhanced MMaDA model.
+        Forward pass of the multimodal model.
         
         Args:
             input_ids: Token IDs
@@ -290,7 +288,7 @@ class EnhancedMMaDAModel(nn.Module):
 class TransformerLayer(nn.Module):
     """Single transformer layer."""
     
-    def __init__(self, config: EnhancedMMaDAConfig):
+    def __init__(self, config: ModelConfig):
         super().__init__()
         
         self.attention = MultiHeadAttention(config)
@@ -322,7 +320,7 @@ class TransformerLayer(nn.Module):
 class MultiHeadAttention(nn.Module):
     """Multi-head attention mechanism."""
     
-    def __init__(self, config: EnhancedMMaDAConfig):
+    def __init__(self, config: ModelConfig):
         super().__init__()
         
         self.hidden_size = config.hidden_size
@@ -375,7 +373,7 @@ class MultiHeadAttention(nn.Module):
 class MLP(nn.Module):
     """MLP layer."""
     
-    def __init__(self, config: EnhancedMMaDAConfig):
+    def __init__(self, config: ModelConfig):
         super().__init__()
         
         self.c_fc = nn.Linear(config.hidden_size, config.intermediate_size)
@@ -395,7 +393,7 @@ class MLP(nn.Module):
 class VisionEncoder(nn.Module):
     """Vision encoder for image processing."""
     
-    def __init__(self, config: EnhancedMMaDAConfig):
+    def __init__(self, config: ModelConfig):
         super().__init__()
         
         self.config = config

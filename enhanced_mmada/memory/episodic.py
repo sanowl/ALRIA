@@ -1,6 +1,6 @@
 """
-Episodic Memory Bank for Enhanced MMaDA.
-Advanced episodic memory system with sophisticated indexing and retrieval.
+Episodic Memory Bank for the multimodal model.
+Memory system with indexing and retrieval capabilities.
 """
 
 import time
@@ -11,18 +11,18 @@ from pathlib import Path
 from typing import Dict, List, Optional, Any
 from collections import defaultdict
 
-from ..config import EnhancedMMaDAConfig
+from ..config import ModelConfig
 from ..utils.decorators import timing_decorator, error_handler
-from ..utils.text_embeddings import AdvancedTextEmbedding
+from ..utils.text_embeddings import TextEmbedding
 
 import logging
 logger = logging.getLogger(__name__)
 
 
 class EpisodicMemoryBank:
-    """Advanced episodic memory system with sophisticated indexing and retrieval."""
+    """Episodic memory system with indexing and retrieval."""
     
-    def __init__(self, config: EnhancedMMaDAConfig):
+    def __init__(self, config: ModelConfig):
         self.config = config
         self.max_size = config.episodic_memory_size
         self.embedding_dim = config.memory_embedding_dim
@@ -38,8 +38,8 @@ class EpisodicMemoryBank:
         self.difficulty_index = defaultdict(list)
         self.success_index = defaultdict(list)
         
-        # Advanced retrieval
-        self.text_embedder = AdvancedTextEmbedding(config)
+        # Text embedding
+        self.text_embedder = TextEmbedding(config)
         self.similarity_threshold = 0.3
         
         # Performance tracking
@@ -65,7 +65,7 @@ class EpisodicMemoryBank:
                      task_type: str,
                      difficulty: float,
                      metadata: Optional[Dict] = None) -> bool:
-        """Store a reasoning episode with comprehensive indexing."""
+        """Store a reasoning episode with indexing."""
         
         with self.lock:
             # Create episode
@@ -110,7 +110,7 @@ class EpisodicMemoryBank:
                                 task_type: str,
                                 top_k: Optional[int] = None,
                                 min_similarity: float = None) -> List[Dict]:
-        """Retrieve similar episodes with advanced scoring."""
+        """Retrieve similar episodes with scoring."""
         
         if top_k is None:
             top_k = self.config.memory_retrieval_top_k
@@ -175,7 +175,7 @@ class EpisodicMemoryBank:
             return retrieved_episodes
     
     def get_memory_statistics(self) -> Dict[str, Any]:
-        """Get comprehensive memory statistics."""
+        """Get memory statistics."""
         with self.lock:
             if not self.episodes:
                 return {'total_episodes': 0}
@@ -310,7 +310,6 @@ class EpisodicMemoryBank:
             similarities = [score[1] for score in all_scored[:num_retrieved]]
             if similarities:
                 current_avg = self.retrieval_stats['avg_similarity']
-                total_retrievals = self.retrieval_stats['total_retrievals']
                 new_avg = np.mean(similarities)
                 
                 # Exponential moving average
