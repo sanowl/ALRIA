@@ -1,5 +1,5 @@
 """
-Setup script for Enhanced MMaDA package.
+Setup script for the multimodal model package.
 """
 
 from setuptools import setup, find_packages
@@ -15,11 +15,6 @@ if (this_directory / "requirements.txt").exists():
     requirements = (this_directory / "requirements.txt").read_text().strip().split('\n')
 
 setup(
-    name="enhanced-mmada",
-    version="1.0.0",
-    author="Enhanced MMaDA Team",
-    author_email="team@enhanced-mmada.ai",
-    description="Enhanced Multimodal Attention and Domain Adaptation Framework",
     long_description=long_description,
     long_description_content_type="text/markdown",
     packages=find_packages(),
@@ -61,7 +56,7 @@ setup(
     },
     entry_points={
         "console_scripts": [
-            "enhanced-mmada=enhanced_mmada.cli:main",
+            "multimodal-model=enhanced_mmada.cli:main",
         ],
     },
     include_package_data=True,
